@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir le Genre {% endblock %}
+
+{% block body %}
+    <h1>Genre {{ genre.nom }}   <a href="{{ path('genre_edit', {'id': genre.id}) }}">Editer</a> <br></h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ genre.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ genre.nom }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de pages total du genre</th>
+                <td>{{ nbPages }}</td>
+            </tr>
+             <tr>
+                <th>Nombre de pages moyen du genre</th>
+                <td>{{ nbPagesMoyen }}</td>
+            </tr>
+        </tbody>
+    </table>
+  
+    
+    <p>Supprimer le genre (seulement si aucun livre appartient à ce genre)  </p>
+
+    {{ include('genre/_delete_form.html.twig') }}
+    
+    <a href="{{ path('genre_index') }}">Retour à la liste</a> 
+
+{% endblock %}

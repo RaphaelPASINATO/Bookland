@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des auteurs par genre{% endblock %}
+
+{% block body %}
+    <h1>Liste des auteurs avec leurs genres</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Auteur</th>
+                 <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody>
+         {% set foo = "" %}
+        {% for auteur in auteurs %}
+           
+            <tr>
+                 {% if foo != auteur.id %}
+                 <td>{{ auteur.nom_prenom }}</td>
+                 <td>{{ auteur.nom }}</td>
+                 {% else %}
+                 <td></td>
+                 <td>{{ auteur.nom }}</td>
+                {% endif %}
+
+               
+            </tr>
+            {% set foo = auteur.id %}
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun auteur trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('auteur_index') }}">Retour à la liste</a>
+{% endblock %}

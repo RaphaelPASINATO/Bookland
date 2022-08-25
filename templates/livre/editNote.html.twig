@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer la note du Livre{% endblock %}
+
+{% block body %}
+    <h1>Modification de la note du livre {{ livre.titre }}</h1>
+       <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ livre.id }}</td>
+            </tr>
+            <tr>
+                <th>Isbn</th>
+                <td>{{ livre.isbn }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ livre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de pages</th>
+                <td>{{ livre.nbpages }}</td>
+            </tr>
+            <tr>
+                <th>Date de parution</th>
+                <td>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+             <th>livre écrit par :</th>  
+               {% for auteur in livre.getAuteurLivre()  %}
+               <tr>
+                    <td>{{ auteur.getNomPrenom() }}</td>
+               </tr>
+                 {% else %}
+                     
+                    <td colspan="6">Aucun auteur trouvé</td>
+                    </tr>
+               {% endfor %}
+            </tr>
+             <tr>
+             <th>Genre(s) du livre :</th>  
+               {% for genre in livre.getLivreGenre()  %}
+               <tr>
+                    <td>{{ genre.getNom() }}</td>
+               </tr>
+                 {% else %}
+                     
+                    <td colspan="6">Aucun genre trouvé</td>
+                    </tr>
+               {% endfor %}
+            </tr>
+            <th>Modification de la note</th>  
+        </tbody>
+    </table>
+     {{ include('livre/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+
+    <a href="{{ path('livre_index') }}">Retour à la liste</a>
+
+{% endblock %}

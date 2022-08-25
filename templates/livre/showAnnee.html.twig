@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block title %}Recherche de livres entre deux années
+{% endblock %}
+
+{% block body %}
+	<h1>Recherche de livres entre deux années</h1>
+	{{ form_start(form) }}
+	<div >
+		<div>
+			{{ form_widget(form) }}
+		</div>
+		<div>
+			<p>
+				<button type="submit" >
+					ok
+				</button>
+			</p>
+		</div>
+	</div>
+	{{ form_end(form) }}
+ <table class="table">
+        <thead>
+            <tr>
+                <th>Isbn</th>
+                <th>Titre</th>
+                <th>Nombre pages</th>
+                <th>Date de parution</th>
+                <th>Note</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in anneeCible %}
+            <tr>
+                <td>{{ livre.isbn }}</td>
+                <td>{{ livre.titre }}</td>
+                <td>{{ livre.nbpages }}</td>
+                <td>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</td>
+                <td>{{ livre.note }}</td>
+                <td>
+                    <a href="{{ path('livre_show', {'id': livre.id}) }}">Voir</a>
+                    <a href="{{ path('livre_edit', {'id': livre.id}) }}">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun livre trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('livre_index') }}">Retour à la liste</a>
+{% endblock %}

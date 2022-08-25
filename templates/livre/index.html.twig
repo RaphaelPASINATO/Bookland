@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des livres{% endblock %}
+
+{% block body %}
+    <h1>Liste des livres</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Isbn</th>
+                <th>Titre</th>
+                <th>Nombre pages</th>
+                <th>Note</th>
+                <th>Date de parution</th>
+            
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td>{{ livre.isbn }}</td>
+                <td>{{ livre.titre }}</td>
+                <td>{{ livre.nbpages }}</td>
+                 <td>{{ livre.note }}
+                 <a href="{{ path('livre_edit_note', {'id': livre.id}) }}">Modifier</a>
+                </td>
+                <td>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</td>
+               
+                <td>
+                    <a href="{{ path('livre_show', {'id': livre.id}) }}">Voir</a>
+                    <a href="{{ path('livre_edit', {'id': livre.id}) }}">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun livre trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+      <p><a href="{{ path('livre_Annee') }}">Liste de livres entre deux années</a></p>
+       <p><a href="{{ path('livre_AnneeNote') }}">Liste de livres entre deux dates et deux notes</a></p>
+       <p><a href="{{ path('livre_parite') }}">Liste de livres avec la parité homme/femme</a></p>
+        <p><a href="{{ path('livre_nationalite') }}">Liste de livres aves des auteurs de nationalites différentes</a></p>
+        <p><a href="{{ path('livre_Partie_Titre') }}">Rechercher un livre</a></p>
+       <p><a href="{{ path('livre_new') }}">Creer un nouveau livre</a></p>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Augmenter les notes{% endblock %}
+
+{% block body %}
+    <h1>Augmenter les notes de {{ auteur.getNomPrenom() }}</h1>
+
+    {{ include('auteur/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('auteur_index') }}">Retour à la liste</a>
+
+{% endblock %}

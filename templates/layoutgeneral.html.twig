@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+       <body>
+		<div id="navigation" ><hr />
+		 	<a>bookland</a>
+   			<a href="{{ path('bookland') }}">Accueil</a> 
+			<a href="{{ path('livre_index') }}">Les livres</a> 
+			<a href="{{ path('auteur_index') }}">Les auteurs</a> 
+			<a href="{{ path('genre_index') }}">Les genres</a> 		
+		<hr /></div>
+		<h1>{% block titre %}Bookland
+                    {% endblock %}
+                </h1>
+		<div id="contenu" >
+                    {% block contenu %}
+                    {% endblock %}
+		</div>
+		<hr />
+		<div id="pied_de_page" >
+			<p>&copy; Projet Symfony</p>
+		</div>
+	</body>
+</html>

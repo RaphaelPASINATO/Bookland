@@ -1,0 +1,32 @@
+{% extends "layoutgeneral.html.twig" %}
+{% block titre %}
+    {{ parent() }} : Accueil
+{% endblock %}
+{% block contenu %}
+    <p>Site de Bookland : vous trouverez ici des livres, des auteurs et des genres.</p>
+     <hr />
+      <h2>Initialisation</h2>
+        <p>Vous ne devez aller qu'une fois dans cette page. </p>
+        <p><a href="{{ path('bookland_init') }}">Initialisation des données</a></p>
+    <hr />
+    <h2>Auteur</h2>
+    <p><a href="{{ path('auteur_index') }}">Consulter la liste des auteurs</a></p>
+     <p> <a href="{{ path('auteur_Minimum') }}">Consulter la liste des auteurs ayant écrit dans au moins 3 livres différents </a></p>
+    <p> <a href="{{ path('auteur_genre') }}">Consulter la liste des auteurs avec leurs genres </a></p>
+    <p>     <a href="{{ path('auteur_new') }}">Creer un nouvel auteur</a> </p>
+    <hr />
+    <h2>Livre</h2>
+    <p><a href="{{ path('livre_index') }}">Consulter la liste des livres</a></p>
+    <p> <a href="{{ path('livre_Annee') }}">Consulter la liste de livres entre deux années</a></p>
+    <p><a href="{{ path('livre_AnneeNote') }}">Consulter la liste de livres entre deux dates et deux notes</a></p>
+    <p><a href="{{ path('livre_parite') }}">Consulter la liste de livres avec la parité homme/femme</a></p>
+    <p><a href="{{ path('livre_nationalite') }}">Consulter la liste de livres aves des auteurs de nationalites différentes</a></p>
+    <p><a href="{{ path('livre_Partie_Titre') }}">Rechercher un livre</a></p>
+    <p><a href="{{ path('livre_new') }}">Creer un nouveau livre</a></p>
+    <hr />
+    <h2>Genre</h2>
+    <p><a href="{{ path('genre_index') }}">Consulter la liste des genres</a></p>
+    <p><a href="{{ path('genre_auteur') }}">Consulter la liste des genres et d'auteurs y ayant publié au moins un livre</a></p>
+    <p><a href="{{ path('genre_new') }}">Creer un nouveau genre</a></p>
+
+{% endblock %}

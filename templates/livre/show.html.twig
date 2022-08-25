@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir le livre{% endblock %}
+
+{% block body %}
+    <h1>{{ livre.titre }}   <a href="{{ path('livre_edit', {'id': livre.id}) }}">Editer</a></h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ livre.id }}</td>
+            </tr>
+            <tr>
+                <th>Isbn</th>
+                <td>{{ livre.isbn }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ livre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de pages</th>
+                <td>{{ livre.nbpages }}</td>
+            </tr>
+            <tr>
+                <th>Date de parution</th>
+                <td>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ livre.note }}</td>
+            </tr>
+            <tr>
+             <th>livre écrit par :</th>  
+               {% for auteur in livre.getAuteurLivre()  %}
+               <tr>
+                    <td>{{ auteur.getNomPrenom() }}</td>
+               </tr>
+                 {% else %}
+                     
+                    <td colspan="6">Aucun auteur trouvé</td>
+                    </tr>
+               {% endfor %}
+            </tr>
+             <tr>
+             <th>Genre(s) du livre :</th>  
+               {% for genre in livre.getLivreGenre()  %}
+               <tr>
+                    <td>{{ genre.getNom() }}</td>
+               </tr>
+                 {% else %}
+                     
+                    <td colspan="6">Aucun genre trouvé</td>
+                    </tr>
+               {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+  
+
+    {{ include('livre/_delete_form.html.twig') }}
+    
+    <a href="{{ path('livre_index') }}">Retour à la liste</a>
+
+{% endblock %}

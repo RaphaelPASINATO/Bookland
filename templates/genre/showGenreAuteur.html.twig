@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des genres et de leurs auteurs{% endblock %}
+
+{% block body %}
+    <h1>Liste des genres et d'auteurs y ayant publié au moins un livre</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                 <th>Auteur</th>
+            </tr>
+        </thead>
+        <tbody>
+         {% set foo = "" %}
+        {% for genre in genres %}
+           
+            <tr>
+                 {% if foo != genre.id %}
+                 <td>{{ genre.nom }}</td>
+                 <td>{{ genre.nom_prenom }}</td>
+                 {% else %}
+                 <td></td>
+                 <td>{{ genre.nom_prenom }}</td>
+                {% endif %}
+
+               
+            </tr>
+            {% set foo = genre.id %}
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun genre trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('genre_new') }}">Creer un nouveau genre</a>
+{% endblock %}
